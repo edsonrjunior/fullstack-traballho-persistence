@@ -1,7 +1,6 @@
 package br.com.fiap.model;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -22,30 +21,21 @@ public class Cliente implements Serializable {
 	private String nome;
 	private String cpf;
 	private String celular;
-	private String logradouro;
-	private Integer numero;
-	private Integer cep;
-	private String cidade;
-	private String uf;
 
-	@OneToMany
-	private List<Pedido> pedidos = new ArrayList<>();
+	@OneToMany(mappedBy = "cliente")
+	private List<Pedido> pedidos;
+	
+	@OneToMany(mappedBy = "cliente")
+    private List<Endereco> enderecos;
 
 	public Cliente() {
 
 	}
 
-	public Cliente(Integer id, String nome, String cpf, String celular, String logradouro, Integer numero, Integer cep,
-			String cidade, String uf) {
-		this.id = id;
+	public Cliente(String nome, String cpf, String celular) {
 		this.nome = nome;
 		this.cpf = cpf;
 		this.celular = celular;
-		this.logradouro = logradouro;
-		this.numero = numero;
-		this.cep = cep;
-		this.cidade = cidade;
-		this.uf = uf;
 	}
 
 	public Integer getId() {
@@ -80,46 +70,6 @@ public class Cliente implements Serializable {
 		this.celular = celular;
 	}
 
-	public String getLogradouro() {
-		return logradouro;
-	}
-
-	public void setLogradouro(String logradouro) {
-		this.logradouro = logradouro;
-	}
-
-	public Integer getNumero() {
-		return numero;
-	}
-
-	public void setNumero(Integer numero) {
-		this.numero = numero;
-	}
-
-	public Integer getCep() {
-		return cep;
-	}
-
-	public void setCep(Integer cep) {
-		this.cep = cep;
-	}
-
-	public String getCidade() {
-		return cidade;
-	}
-
-	public void setCidade(String cidade) {
-		this.cidade = cidade;
-	}
-
-	public String getUf() {
-		return uf;
-	}
-
-	public void setUf(String uf) {
-		this.uf = uf;
-	}
-
 	public List<Pedido> getPedidos() {
 		return pedidos;
 	}
@@ -131,5 +81,18 @@ public class Cliente implements Serializable {
 	public void removePedidos(Pedido pedido) {
 		pedidos.remove(pedido);
 	}
+	
+	public List<Endereco> getEnderecos() {
+		return enderecos;
+	}
+
+	public void addEnderecos(Endereco endereco) {
+		enderecos.add(endereco);
+	}
+
+	public void removeEnderecos(Endereco endereco) {
+		enderecos.remove(endereco);
+	}
+
 
 }
