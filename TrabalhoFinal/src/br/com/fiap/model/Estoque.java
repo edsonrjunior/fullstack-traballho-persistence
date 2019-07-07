@@ -20,8 +20,7 @@ public class Estoque implements Serializable {
 	}
 
 	public Estoque(Integer id, Produto produto, Integer quantidade) {
-		this.id.setId(id);
-		this.id.setProduto(produto);
+		this.id = new EstoquePK(id, produto);
 		this.quantidade = quantidade;
 	}
 

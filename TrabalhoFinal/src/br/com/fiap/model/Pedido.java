@@ -1,6 +1,7 @@
 package br.com.fiap.model;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -24,6 +25,8 @@ public class Pedido implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "cliente_id")
 	private Cliente cliente;
+	
+	private Date data;
 
 	@OneToMany(mappedBy = "id.pedido")
 	private Set<ItemPedido> itens = new HashSet<>();
@@ -32,9 +35,9 @@ public class Pedido implements Serializable {
 
 	}
 
-	public Pedido(Integer id, Cliente cliente) {
-		this.id = id;
+	public Pedido(Cliente cliente, Date data) {
 		this.cliente = cliente;
+		this.data = data;
 	}
 
 	public Integer getId() {
@@ -51,6 +54,14 @@ public class Pedido implements Serializable {
 
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
+	}
+	
+	public Date getData() {
+		return data;
+	}
+
+	public void setData(Date data) {
+		this.data = data;
 	}
 
 	public Set<ItemPedido> getItens() {

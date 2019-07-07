@@ -17,6 +17,10 @@ public class EstoquePK implements Serializable {
 	@JoinColumn(name = "produto_id")
 	private Produto produto;
 
+	public EstoquePK() {
+		
+	}
+	
 	public EstoquePK(Integer id, Produto produto){
 		this.id = id;
 		this.produto = produto;
