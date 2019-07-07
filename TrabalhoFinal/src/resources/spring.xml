@@ -25,9 +25,9 @@ http://www.springframework.org/schema/data/jpa/spring-jpa.xsd
 		<property name="driverClassName"
 			value="com.mysql.jdbc.Driver" />
 		<property name="url"
-			value="jdbc:mysql://localhost:3306/dbprodutos" />
+			value="jdbc:mysql://localhost:3306/fiapvendas" />
 		<property name="username" value="root" />
-		<property name="password" value="sa" />
+		<property name="password" value="mysql" />
 	</bean>
 	<bean id="entityManagerFactory"
 		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"
@@ -36,7 +36,7 @@ http://www.springframework.org/schema/data/jpa/spring-jpa.xsd
 			<bean
 				class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
 				<property name="generateDdl" value="true" />
-				<property name="showSql" value="false" />
+				<property name="showSql" value="true" />
 				<property name="databasePlatform"
 					value="org.hibernate.dialect.MySQL5InnoDBDialect" />
 			</bean>

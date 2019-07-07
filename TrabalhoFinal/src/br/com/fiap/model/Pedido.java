@@ -1,8 +1,8 @@
 package br.com.fiap.model;
 
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.Collection;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -22,19 +22,21 @@ public class Pedido implements Serializable {
 	private Integer id;
 
 	@ManyToOne
-	@JoinColumn(name = "cliente_id")
+	@JoinColumn(name = "cliente_id", referencedColumnName = "id")
 	private Cliente cliente;
+	
+	private Date data;
 
 	@OneToMany(mappedBy = "id.pedido")
-	private Set<ItemPedido> itens = new HashSet<>();
+	private Collection<ItemPedido> itens;
 
 	public Pedido() {
 
 	}
 
-	public Pedido(Integer id, Cliente cliente) {
-		this.id = id;
+	public Pedido(Cliente cliente, Date data) {
 		this.cliente = cliente;
+		this.data = data;
 	}
 
 	public Integer getId() {
@@ -52,12 +54,20 @@ public class Pedido implements Serializable {
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
 	}
+	
+	public Date getData() {
+		return data;
+	}
 
-	public Set<ItemPedido> getItens() {
+	public void setData(Date data) {
+		this.data = data;
+	}
+
+	public Collection<ItemPedido> getItens() {
 		return itens;
 	}
 
-	public void setItens(Set<ItemPedido> itens) {
+	public void setItens(Collection<ItemPedido> itens) {
 		this.itens = itens;
 	}
 

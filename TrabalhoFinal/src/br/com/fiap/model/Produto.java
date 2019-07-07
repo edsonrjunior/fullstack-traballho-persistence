@@ -1,12 +1,14 @@
 package br.com.fiap.model;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Produto implements Serializable {
@@ -19,21 +21,18 @@ public class Produto implements Serializable {
 
 	private String nome;
 
-	private Integer quantidade;
-	
 	private Double valor;
 
-	@OneToOne
-	private Estoque estoque;
+	@OneToMany(mappedBy = "id.produto")
+	private Set<Estoque> estoques = new HashSet<>();
 
 	public Produto() {
 
 	}
 
-	public Produto(Integer id, String nome, Integer quantidade, Double valor) {
+	public Produto(Integer id, String nome, Double valor) {
 		this.id = id;
 		this.nome = nome;
-		this.quantidade = quantidade;
 		this.valor = valor;
 	}
 
@@ -53,20 +52,19 @@ public class Produto implements Serializable {
 		this.nome = nome;
 	}
 
-		
-	public Integer getQuantidade() {
-		return quantidade;
-	}
-
-	public void setQuantidade(Integer quantidade) {
-		this.quantidade = quantidade;
-	}
-
 	public Double getValor() {
 		return valor;
 	}
 
 	public void setValor(Double valor) {
 		this.valor = valor;
+	}
+
+	public Set<Estoque> getEstoques() {
+		return estoques;
+	}
+
+	public void setEstoques(Set<Estoque> estoques) {
+		this.estoques = estoques;
 	}
 }
