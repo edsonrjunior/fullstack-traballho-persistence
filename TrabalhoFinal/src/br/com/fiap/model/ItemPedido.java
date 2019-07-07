@@ -15,13 +15,15 @@ public class ItemPedido implements Serializable {
 
 	private Integer quantidade;
 
+	private Double valor;
+
 	public ItemPedido() {
 
 	}
 
 	public ItemPedido(Pedido pedido, Produto produto, Integer quantidade) {
-		id.setPedido(pedido);
-		id.setProduto(produto);
+		this.id.setPedido(pedido);
+		this.id.setProduto(produto);
 		this.quantidade = quantidade;
 	}
 
@@ -39,6 +41,14 @@ public class ItemPedido implements Serializable {
 
 	public void setQuantidade(Integer quantidade) {
 		this.quantidade = quantidade;
+	}
+
+	public Double getValor() {
+		return valor;
+	}
+
+	public void setValor(Double valor) {
+		this.valor = valor;
 	}
 
 }

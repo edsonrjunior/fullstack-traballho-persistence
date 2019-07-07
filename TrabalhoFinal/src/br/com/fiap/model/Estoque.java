@@ -1,62 +1,43 @@
 package br.com.fiap.model;
 
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
 
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+
 
 @Entity
 public class Estoque implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Integer id;
+	@EmbeddedId
+	private EstoquePK id;
 
-	@ManyToOne
-	@JoinColumn(name = "produto_id")
-	private Produto produto;
-
-	@OneToMany(mappedBy = "id.produto")
-	private Set<ItemEstoque> itens = new HashSet<>();
+	private Integer quantidade;
 
 	public Estoque() {
 	}
 
-	public Estoque(Produto produto) {
-		this.produto = produto;
+	public Estoque(Integer id, Produto produto, Integer quantidade) {
+		this.id.setId(id);
+		this.id.setProduto(produto);
+		this.quantidade = quantidade;
 	}
 
-	public Produto getProduto() {
-		return produto;
-	}
-
-	public void setProduto(Produto produto) {
-		this.produto = produto;
-	}
-
-	public Integer getId() {
+	public EstoquePK getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(EstoquePK id) {
 		this.id = id;
 	}
 
-	public Set<ItemEstoque> getItens() {
-		return itens;
+	public Integer getQuantidade() {
+		return this.quantidade;
 	}
-
-	public void setItens(Set<ItemEstoque> itens) {
-		this.itens = itens;
+	public void setQuantidade(Integer quantidade) {
+		this.quantidade = quantidade;
 	}
 
 }
