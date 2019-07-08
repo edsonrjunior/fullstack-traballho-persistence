@@ -98,8 +98,22 @@ public class SpringJPATeste {
 		System.out.println("Salvando os pedidos no banco");
 		pedidoService.addAll(Arrays.asList(pedido1, pedido2, pedido3));				
 
-		ctx.close();
-
 		System.out.println("Banco criado!");
+		
+		//Fazendo consultas - Teste do cache
+		System.out.println("Fazendo consulta a lista de clientes");
+		ArrayList<Cliente> cli = (ArrayList<Cliente>) clienteService.findAll();
+
+		cli.forEach(e ->
+				System.out.println(e.getNome()));
+
+		System.out.println("Fazendo segunda consulta a lista de clientes");
+		ArrayList<Cliente> cli2 = (ArrayList<Cliente>) clienteService.findAll();
+
+		cli2.forEach(e ->
+				System.out.println(e.getNome()));
+
+		ctx.close();		
+		
 	}
 }
