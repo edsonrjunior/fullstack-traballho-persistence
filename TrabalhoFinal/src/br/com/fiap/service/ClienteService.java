@@ -26,7 +26,6 @@ public class ClienteService {
 		clienteRepository.save(cliente);
 	}
 
-	@Transactional
 	@Cacheable(value = "allClientesCache", unless = "#result.size() == 0")
 	public List<Cliente> findAll() {
 		return clienteRepository.findAll();
@@ -40,7 +39,6 @@ public class ClienteService {
 		}
 	}
 
-	@Transactional
 	@Cacheable(value = "ClienteCache", key = "#nome")
 	public List<Cliente> findByName(String nome) {
 		return clienteRepository.findByName(nome);

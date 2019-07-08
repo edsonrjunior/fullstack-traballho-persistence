@@ -42,9 +42,6 @@ http://www.springframework.org/schema/data/jpa/spring-jpa.xsd
 			</bean>
 		</property>
 	</bean>
-	<bean id="jedisConnectionFactory"
-		class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory"
-		p:host-name="server" p:port="6379" />
 	<tx:annotation-driven
 		transaction-manager="transactionManager" />
 	<bean id="transactionManager"
